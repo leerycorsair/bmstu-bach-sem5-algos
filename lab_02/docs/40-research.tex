@@ -1,0 +1,83 @@
+\chapter{Исследовательская часть}
+
+\section{Пример работы}
+На рисунке \ref{img:demo} приведен пример работы программы.
+\img{185mm}{demo}{Демонстрация работы программы}
+
+\section{Технические характеристики}
+
+Технические характеристики устройства, на котором выполнялось тестирование:
+
+\begin{itemize}
+	\item Операционная система: Windows 10 64-bit \cite{windows}.
+	\item Память: 16 GB.
+	\item Процессор: AMD Ryzen 5 4600H \cite{amd} @ 3.00 GHz
+\end{itemize}
+
+Тестирование проводилось на ноутбуке при включённом режиме производительности. Во время тестирования ноутбук был нагружен только системными процессами.
+
+\section{Время выполнения алгоритмов}
+
+Алгоритмы тестировались при помощи написания <<бенчмарков>> \cite{gotest}, предоставляемых встроенными в Go средствами. Для такого рода тестирования не нужно самостоятельно указывать количество повторов. В библиотеке для тестирования существует константа $N$, которая динамически варьируется в зависимости от того, был ли получен стабильный результат или нет.
+
+\begin{lstinputlisting}[
+	caption={Пример реализации бенчмарка},
+	label={lst:matrix_test},
+	style={go},
+	linerange={5-16},
+	]{../src/matrix/matrix_test.go}
+\end{lstinputlisting}
+
+На рисунках \ref{plt:time_even} и \ref{plt:time_odd} приведены графики зависимостей времени работы алгоритмов умножения матриц от их размеров.
+\captionsetup{singlelinecheck = false, justification=raggedright}
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis lines=left,
+			xlabel=Размер матрицы,
+			ylabel={Время, нс},
+			legend pos=north west,
+			ymajorgrids=true
+			]
+			\addplot table[x=size,y=Classic,col sep=comma] {inc/csv/time_classic_even.csv};
+			\addplot table[x=size,y=Winograd,col sep=comma] {inc/csv/time_winograd_even.csv};
+			\addplot table[x=size,y=ImpWinograd,col sep=comma] {inc/csv/time_imp_winograd_even.csv};
+			\legend{Классический, Виноград, Оптим. Виноград}
+		\end{axis}
+	\end{tikzpicture}
+	\captionsetup{justification=centering}
+	\caption{Зависимость времени работы алгоритма умножения матриц от размера матрицы. Четные матрицы.}
+	\label{plt:time_even}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis lines=left,
+			xlabel=Размер матрицы,
+			ylabel={Время, нс},
+			legend pos=north west,
+			ymajorgrids=true
+			]
+			\addplot table[x=size,y=Classic,col sep=comma] {inc/csv/time_classic_odd.csv};
+			\addplot table[x=size,y=Winograd,col sep=comma] {inc/csv/time_winograd_odd.csv};
+			\addplot table[x=size,y=ImpWinograd,col sep=comma] {inc/csv/time_imp_winograd_odd.csv};
+			\legend{Классический, Виноград, Оптим. Виноград}
+		\end{axis}
+	\end{tikzpicture}
+	\captionsetup{justification=centering}
+	\caption{Зависимость времени работы алгоритма умножения матриц от размера матрицы. Нечетные матрицы.}
+	\label{plt:time_odd}
+\end{figure}
+\clearpage
+\captionsetup{singlelinecheck = false, justification=centering}
+
+\section{Вывод}
+
+Исходя из полученных эксперементальных данных можно сделать несколько выводов.
+
+На матрицах четных размеров классический алгоритм показывает худшие результаты по сравнению с алгоритмом Винограда и его оптимизированной версией (работает дольше в ~1.24 и в ~1.55 раз соответственно, т.е. около ~24\% и ~55\%). Следует отметить, что выполненные оптимизации позволили уменьшить время выполнения алгоритма Винограда в ~1.25 раз, т.е. ~25\%.
+
+На матрицах нечетных размеров классический алгоритм также показывает показатель хуже, чем алгоритм Винограда и его оптимизированная версия. Однако отставание становится меньше, т.к. в последних приходится выполнять один дополнительный цикл. Классический алгоритм работает медленее в ~1.20 и в ~1.42 раз, т.е. около 20\% и 42\%.

@@ -1,0 +1,102 @@
+\chapter{Исследовательская часть}
+
+\section{Пример работы}
+
+Демонстрация работы программы приведена на рисунке \ref{img:demo}.
+
+\boximg{80mm}{demo}{Демонстрация работы алгоритмов сортировок}
+
+\section{Технические характеристики}
+
+Технические характеристики устройства, на котором выполнялось тестирование:
+
+\begin{itemize}
+	\item Операционная система: Windows 10 64-bit \cite{windows}.
+	\item Память: 16 GB.
+	\item Процессор: AMD Ryzen 5 4600H \cite{amd} @ 3.00 GHz.
+\end{itemize}
+
+Тестирование проводилось на ноутбуке при включённом режиме производительности. Во время тестирования ноутбук был нагружен только системными процессами.
+
+\section{Время выполнения алгоритмов}
+
+Алгоритмы тестировались при помощи написания <<бенчмарков>> \cite{gotest}, предоставляемых встроенными в Go средствами. Для такого  тестирования не нужно самостоятельно указывать количество повторов. В библиотеке для тестирования существует константа $N$, которая динамически для получения стабильного результата. На рисунках \ref{plt:time_rand} - \ref{plt:time_desc} приведены графики зависимостей времени работы алгоритмов для различных наборов данных.
+
+\begin{figure}[!h]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis lines=left,
+			xlabel=Размер массива,
+			ylabel={Время, нс},
+			legend pos=north west,
+			ymajorgrids=true
+			]
+			\addplot table[x=size,y=BubbleSort,col sep=comma] {inc/csv/bubble_rand.csv};
+			\addplot table[x=size,y=InsertSort,col sep=comma] {inc/csv/insertion_rand.csv};
+			\addplot table[x=size,y=SelectionSort,col sep=comma] {inc/csv/selection_rand.csv};
+			\legend{Bubble, Insert, Selection}
+		\end{axis}
+	\end{tikzpicture}
+	\captionsetup{justification=centering}
+	\caption{Сравнение алгоритмов на массивах случайных данных.}
+	\label{plt:time_rand}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis lines=left,
+			xlabel=Размер массива,
+			ylabel={Время, нс},
+			legend pos=north west,
+			ymajorgrids=true
+			]
+			\addplot table[x=size,y=BubbleSort,col sep=comma] {inc/csv/bubble_asc.csv};
+			\addplot table[x=size,y=InsertSort,col sep=comma] {inc/csv/insertion_asc.csv};
+			\addplot table[x=size,y=SelectionSort,col sep=comma] {inc/csv/selection_asc.csv};
+			\legend{Bubble, Insert, Selection}
+		\end{axis}
+	\end{tikzpicture}
+	\captionsetup{justification=centering}
+	\caption{Сравнение алгоритмов на массивах данных, упорядоченных в прямом порядке (лучший случай).}
+	\label{plt:time_asc}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis lines=left,
+			xlabel=Размер массива,
+			ylabel={Время, нс},
+			legend pos=north west,
+			ymajorgrids=true
+			]
+			\addplot table[x=size,y=BubbleSort,col sep=comma] {inc/csv/bubble_desc.csv};
+			\addplot table[x=size,y=InsertSort,col sep=comma] {inc/csv/insertion_desc.csv};
+			\addplot table[x=size,y=SelectionSort,col sep=comma] {inc/csv/selection_desc.csv};
+			\legend{Bubble, Insert, Selection}
+		\end{axis}
+	\end{tikzpicture}
+	\captionsetup{justification=centering}
+	\caption{Сравнение алгоритмов на массивах данных, упорядоченных в обратном порядке (худший случай).}
+	\label{plt:time_desc}
+\end{figure}
+
+
+\captionsetup{singlelinecheck = false, justification=centering}
+
+
+\section{Вывод}
+
+Исходя из полученных эксперементальных данных можно сделать следующие выводы:
+\begin{itemize}
+	\item На массивах случайных данных алгоритм сортировки пузырьком показывает результат хуже, чем алгоритмы вставки и выбора (проигрыш порядка ~84\%  и ~43\% соответственно). Алгоритм вставки в свою очередь более эффективен, чем алгоритм выбора (выигрышь порядка ~72\%).
+	\item На массивах данных, упорядоченных в прямом порядке (лучший случай) алгоритмы сортировки пузырьком и вставками показывают идентичный результат, а алгоритм выбора работает медленее, чем они в ~1560 раз. 
+	\item На массивах данных, упорядоченных в обратном порядке (худший случай алгоритмы сортировки вставками и выбором показывают сопоставимые результаты (последнее в среднее медленее на ~5-10\%), а алгоритм сортировки пузырьком имеет проигрышь ~65\% и ~60\% соответсвенно. 
+
+\end{itemize}
+
+

@@ -1,0 +1,47 @@
+goos: linux
+goarch: amd64
+pkg: local/matrix
+BenchmarkCM100-12     	      30	   2609909 ns/op	   92288 B/op	     101 allocs/op
+BenchmarkCM200-12     	      30	  20295003 ns/op	  363303 B/op	     201 allocs/op
+BenchmarkCM300-12     	      30	  82817445 ns/op	  814647 B/op	     301 allocs/op
+BenchmarkCM400-12     	      30	 178496898 ns/op	 1289744 B/op	     401 allocs/op
+BenchmarkCM500-12     	      30	 488834027 ns/op	 2060291 B/op	     501 allocs/op
+BenchmarkCM600-12     	      30	 864659155 ns/op	 2934784 B/op	     601 allocs/op
+BenchmarkCM700-12     	      30	1188601962 ns/op	 4319235 B/op	     701 allocs/op
+BenchmarkCM101-12     	      30	   2651815 ns/op	   93184 B/op	     102 allocs/op
+BenchmarkCM201-12     	      30	  20691369 ns/op	  365056 B/op	     202 allocs/op
+BenchmarkCM301-12     	      30	  83106657 ns/op	  817286 B/op	     302 allocs/op
+BenchmarkCM401-12     	      30	 171484805 ns/op	 1395587 B/op	     402 allocs/op
+BenchmarkCM501-12     	      30	 488453748 ns/op	 2064387 B/op	     502 allocs/op
+BenchmarkCM601-12     	      30	 848308422 ns/op	 2939651 B/op	     602 allocs/op
+BenchmarkCM701-12     	      30	1180963028 ns/op	 4325388 B/op	     702 allocs/op
+BenchmarkWM100-12     	      30	   2079830 ns/op	   94080 B/op	     103 allocs/op
+BenchmarkWM200-12     	      30	  16786268 ns/op	  366848 B/op	     203 allocs/op
+BenchmarkWM300-12     	      30	  71038143 ns/op	  819974 B/op	     303 allocs/op
+BenchmarkWM400-12     	      30	 152618651 ns/op	 1296131 B/op	     403 allocs/op
+BenchmarkWM500-12     	      30	 394847476 ns/op	 2068486 B/op	     503 allocs/op
+BenchmarkWM600-12     	      30	 695489162 ns/op	 2944512 B/op	     603 allocs/op
+BenchmarkWM700-12     	      30	1176626310 ns/op	 4331520 B/op	     703 allocs/op
+BenchmarkWM101-12     	      30	   2156363 ns/op	   94976 B/op	     104 allocs/op
+BenchmarkWM201-12     	      30	  17128377 ns/op	  368640 B/op	     204 allocs/op
+BenchmarkWM301-12     	      30	  72502290 ns/op	  822659 B/op	     304 allocs/op
+BenchmarkWM401-12     	      30	 142042295 ns/op	 1402496 B/op	     404 allocs/op
+BenchmarkWM501-12     	      30	 409520866 ns/op	 2072576 B/op	     504 allocs/op
+BenchmarkWM601-12     	      30	 704689544 ns/op	 2949376 B/op	     604 allocs/op
+BenchmarkWM701-12     	      30	1186747547 ns/op	 4337664 B/op	     704 allocs/op
+BenchmarkWMO100-12    	      30	   1539384 ns/op	   94080 B/op	     103 allocs/op
+BenchmarkWMO200-12    	      30	  12510092 ns/op	  366848 B/op	     203 allocs/op
+BenchmarkWMO300-12    	      30	  52842594 ns/op	  819971 B/op	     303 allocs/op
+BenchmarkWMO400-12    	      30	 117520220 ns/op	 1296128 B/op	     403 allocs/op
+BenchmarkWMO500-12    	      30	 326670007 ns/op	 2068486 B/op	     503 allocs/op
+BenchmarkWMO600-12    	      30	 555833656 ns/op	 2944515 B/op	     603 allocs/op
+BenchmarkWMO700-12    	      30	 970094958 ns/op	 4331523 B/op	     703 allocs/op
+BenchmarkWMO101-12    	      30	   1758762 ns/op	   94976 B/op	     104 allocs/op
+BenchmarkWMO201-12    	      30	  12625016 ns/op	  368640 B/op	     204 allocs/op
+BenchmarkWMO301-12    	      30	  52048165 ns/op	  822659 B/op	     304 allocs/op
+BenchmarkWMO401-12    	      30	 105839302 ns/op	 1402496 B/op	     404 allocs/op
+BenchmarkWMO501-12    	      30	 323311512 ns/op	 2072579 B/op	     504 allocs/op
+BenchmarkWMO601-12    	      30	 596012784 ns/op	 2949376 B/op	     604 allocs/op
+BenchmarkWMO701-12    	      30	 999226642 ns/op	 4337667 B/op	     704 allocs/op
+PASS
+ok  	local/matrix	459.454s

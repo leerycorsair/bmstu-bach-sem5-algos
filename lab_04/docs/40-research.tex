@@ -1,0 +1,114 @@
+\chapter{Исследовательская часть}
+
+\section{Пример работы}
+
+Демонстрация работы программы приведена на рисунке \ref{img:demo}.
+
+\boximg{180mm}{demo}{Демонстрация работы алгоритма поворота}
+
+\section{Технические характеристики}
+
+Технические характеристики устройства, на котором выполнялось тестирование:
+
+\begin{itemize}
+	\item Операционная система: Windows 10 64-bit \cite{windows}.
+	\item Память: 16 GB.
+	\item Процессор: AMD Ryzen 5 4600H \cite{amd} @ 3.00 GHz.
+\end{itemize}
+
+Тестирование проводилось на ноутбуке при включённом режиме производительности. Во время тестирования ноутбук был нагружен только системными процессами.
+
+\section{Время выполнения алгоритмов}
+ В таблице \ref{tabular:full_hd} и на рисунке \ref{plt:time_full_hd} приведены зависимости времени работы алгоритмов для различного количества потоков (количество точек соответствует разрешению 1920х1080).
+ 
+ \captionsetup{singlelinecheck = false, justification=raggedright}
+ \begin{table}[h!]
+ 	\begin{center}
+ 		\caption{\label{tabular:full_hd}Результат времени работы алгоритма при различном количестве потоков}
+ 		\begin{tabular}{|c|c|}
+ 			\hline
+ 			Количество потоков & Время, тики \\ 
+ 			\hline
+ 			1 & 1039794938  \\\hline
+ 			2 & 738458153  \\\hline
+ 			4 & 380418539  \\\hline
+ 			8 & 139540901  \\\hline
+ 			16 & 95889809  \\\hline
+ 			32 & 67919394  \\\hline
+ 		\end{tabular}
+ 	\end{center}
+ \end{table}
+ \captionsetup{singlelinecheck = false, justification=centering}
+
+\begin{figure}[!h]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis lines=left,
+			xlabel=Количество потоков,
+			ylabel={Время, тики процессора},
+			legend pos=north west,
+			ymajorgrids=true
+			]
+			\addplot table[x=thrds,y=ticks,col sep=comma] {inc/csv/full_hd.csv};
+			\legend{Full HD (1920x1080)}
+		\end{axis}
+	\end{tikzpicture}
+	\captionsetup{justification=centering}
+	\caption{Сравнение алгоритмов на различных количествах потоков}
+	\label{plt:time_full_hd}
+\end{figure}
+
+В таблице \ref{tabular:points_cmp} и на рисунке \ref{plt:time_points_cmp} приведены зависимости времени работы алгоритмов для различного количества точек.
+
+ \captionsetup{singlelinecheck = false, justification=raggedright}
+\begin{table}[h!]
+	\begin{center}
+		\caption{\label{tabular:points_cmp}Результат времени работы алгоритма при различном количестве точек}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Количество точек & 1 поток & 12 потоков\\ 
+			\hline
+			4000&941572&1818340   \\\hline
+			16000&2733740&1960482 \\\hline
+			64000&10062319&3676082 \\\hline
+			256000&38439025&7296946 \\\hline
+			512000&76648487&10203703 \\\hline
+			2048000&303856737&29792272 \\\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+\captionsetup{singlelinecheck = false, justification=centering}
+
+\begin{figure}[!h]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis lines=left,
+			xlabel=Количество потоков,
+			ylabel={Время, тики процессора},
+			legend pos=north west,
+			ymajorgrids=true
+			]
+			\addplot table[x=points,y=ticks,col sep=comma] {inc/csv/single.csv};
+			\addplot table[x=points,y=ticks,col sep=comma] {inc/csv/multi.csv};
+			\legend{1 поток, 12 потоков}
+		\end{axis}
+	\end{tikzpicture}
+	\captionsetup{justification=centering}
+	\caption{Сравнение алгоритмов при различном количестве элементов}
+	\label{plt:time_points_cmp}
+\end{figure}
+
+\captionsetup{singlelinecheck = false, justification=centering}
+
+
+\section{Вывод}
+
+Исходя из полученных эксперементальных данных можно сделать следующие выводы.
+
+Использование многопоточности однозначно может дать существенный выигрыш по времени работы алгоритма. В алгоритме поворота фигуры двумерного растра использование многопоточности позволило добиться ~15-кратного увеличения производительности.
+
+Следует отметить, что использование многопоточности на небольшом количестве данных может быть неэффективно, т.к. накладные расходы на создание потоков будут превышать выигрыш от параллельных вычислений.
+
+

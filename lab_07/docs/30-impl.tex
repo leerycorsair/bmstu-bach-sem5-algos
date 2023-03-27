@@ -1,0 +1,102 @@
+\chapter{Технологическая часть}
+
+В данном разделе приведены требования к программному обеспечению, средства реализации и листинги кода.
+
+\section{Средства реализации}
+
+В качестве языка программирования для реализации данной лабораторной работы был выбран многопоточный язык GO \cite{golang}. Данный язык предоставляет средства тестирования разработанного ПО.
+
+\section{Листинг кода}
+
+В листингах \ref{lst:main}--\ref{lst:segment} приведены реализации алгоритмов сортировок, а также вспомогательные функции.
+
+
+\captionsetup{singlelinecheck = false, justification=raggedright}
+
+\begin{lstinputlisting}[
+	caption={Основной модуль программы},
+	label={lst:main},
+	style={go},
+	linerange={14-36},
+	]{../src/main.go}
+\end{lstinputlisting}
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Алгоритм полного перебора},
+	label={lst:brute},
+	style={go},
+	linerange={55-64},
+	]{../src//dict/dict.go}
+\end{lstinputlisting}
+
+\begin{lstinputlisting}[
+	caption={Алгоритм двоичного поиска},
+	label={lst:binary},
+	style={go},
+	linerange={66-91},
+	]{../src//dict/dict.go}
+\end{lstinputlisting}
+
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Алгоритм частотного анализа},
+	label={lst:segment},
+	style={go},
+	linerange={93-136},
+	]{../src//dict/dict.go}
+\end{lstinputlisting}
+
+\clearpage
+
+
+
+Тестирование производилось с помощью словаря, построенном на файле, содержащем данные: "the super file yes the". В таблице \ref{tabular:func_test} приведены функциональные тесты для алгоритмов сортировки.  Все тесты пройдены успешно (таблица \ref{tabular:func_test_res}).
+
+
+\begin{table}[h]
+	\begin{center}
+		\caption{\label{tabular:func_test} Ожидаемый результат работы программы}
+		\begin{tabular}{|c|p{50mm}|c|c|c|}
+			\hline
+			№ & Тестовый случай & Искомый ключ & Ожидаемый результат \\ \hline
+			1 & Одно вхождение &
+			super &
+			value = 1, exists = 1 \\ \hline
+			2 & Несколько вхождений &
+			the &
+			value = 2, exists = 1\\ \hline
+			3 & Нет вхождений &			
+			no &
+			value = 0, exists = 0\\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[h]
+	\begin{center}
+		\caption{\label{tabular:func_test_res} Фактический результат работы программы}
+		\begin{tabular}{|c|p{50mm}|c|c|c|}
+			\hline
+			№ & Тестовый случай & Искомый ключ & Фактический результат \\ \hline
+			1 & Одно вхождение &
+			super &
+			value = 1, exists = 1 \\ \hline
+			2 & Несколько вхождений &
+			the &
+			value = 2, exists = 1\\ \hline
+			3 & Нет вхождений &			
+			no &
+			value = 0, exists = 0\\ \hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+
+\captionsetup{singlelinecheck = false, justification=centering}
+
+\section{Вывод}
+
+Были разработаны и протестированы спроектированные алгоритмы: алгоритм полного перебора, алгоритм бинарного поиска и алгоритм частотного анализа.

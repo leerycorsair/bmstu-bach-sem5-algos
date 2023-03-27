@@ -1,0 +1,143 @@
+\chapter{Технологическая часть}
+
+В данном разделе приведены требования к программному обеспечению, средства реализации и листинги кода.
+
+\section{Средства реализации}
+
+В качестве языка программирования для реализации данной лабораторной работы был выбран многопоточный язык GO \cite{golang}. Данный выбор обусловлен моим желанием расширить свои знания в области применения данного язкыа. Так же данный язык предоставляет средства тестирования разработанного ПО.
+
+\section{Листинг кода}
+
+В листингах \ref{lst:main}--\ref{lst:insertion} приведены реализации алгоритмов сортировок, а также вспомогательные функции.
+
+
+\captionsetup{singlelinecheck = false, justification=raggedright}
+
+\begin{lstinputlisting}[
+	caption={Основной модуль программы},
+	label={lst:main},
+	style={go},
+	linerange={8-27},
+	]{../src/main.go}
+\end{lstinputlisting}
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Алгоритм полного перебора - Часть 1},
+	label={lst:brute1},
+	style={go},
+	linerange={3-49},
+	]{../src/ants/brute.go}
+\end{lstinputlisting}
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Алгоритм полного перебора - Часть 2},
+	label={lst:brute2},
+	style={go},
+	linerange={51-64},
+	]{../src/ants/brute.go}
+\end{lstinputlisting}
+
+\begin{lstinputlisting}[
+	caption={Муравьиный алгоритм - Часть 1},
+	label={lst:ant1},
+	style={go},
+	linerange={17-38},
+	]{../src/ants/ant.go}
+\end{lstinputlisting}
+
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Муравьиный алгоритм - Часть 2},
+	label={lst:ant2},
+	style={go},
+	linerange={40-84},
+	]{../src/ants/ant.go}
+\end{lstinputlisting}
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Муравьиный алгоритм - Часть 3},
+	label={lst:ant3},
+	style={go},
+	linerange={86-128},
+	]{../src/ants/ant.go}
+\end{lstinputlisting}
+
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Муравьиный алгоритм - Часть 4},
+	label={lst:ant4},
+	style={go},
+	linerange={130-167},
+	]{../src/ants/ant.go}
+\end{lstinputlisting}
+
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Муравьиный алгоритм - Часть 5},
+	label={lst:ant5},
+	style={go},
+	linerange={169-196},
+	]{../src/ants/ant.go}
+\end{lstinputlisting}
+
+В таблице \ref{tabular:func_test} приведены функциональные тесты для алгоритмов сортировки. Все тесты пройдены успешно (таблица \ref{tabular:func_test_res}).
+
+
+\begin{table}[h!]
+	\begin{center}
+		\caption{\label{tabular:func_test}Ожидаемый результат работы программы}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Входная матрица смежности & Полный перебор & Муравьиный алгоритм \\ 
+			\hline
+			$\begin{pmatrix}
+			    0 &    2 &    3 &   26 &   39 \\ 
+			2 &    0 &   29 &   38 &    9 \\ 
+			3 &   29 &    0 &   13 &   34 \\ 
+			26 &   38 &   13 &    0 &    5 \\ 
+			39 &    9 &   34 &    5 &    0 \\ 
+			\end{pmatrix}$ & 32 & 32	 \\\hline
+			$\begin{pmatrix}
+    0 &   23 &   49 \\ 
+23 &    0 &   13 \\ 
+49 &   13 &    0 \\ 
+			\end{pmatrix}$ & 85 & 85	\\\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[h!]
+	\begin{center}
+		\caption{\label{tabular:func_test_res}Фактический результат работы программы}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Входная матрица смежности & Полный перебор & Муравьиный алгоритм \\ 
+			\hline
+			$\begin{pmatrix}
+				0 &    2 &    3 &   26 &   39 \\ 
+				2 &    0 &   29 &   38 &    9 \\ 
+				3 &   29 &    0 &   13 &   34 \\ 
+				26 &   38 &   13 &    0 &    5 \\ 
+				39 &    9 &   34 &    5 &    0 \\ 
+			\end{pmatrix}$ & 32 & 32	 \\\hline
+			$\begin{pmatrix}
+				0 &   23 &   49 \\ 
+				23 &    0 &   13 \\ 
+				49 &   13 &    0 \\ 
+			\end{pmatrix}$ & 85 & 85	\\\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+\captionsetup{singlelinecheck = false, justification=centering}
+
+\section{Вывод}
+
+Были разработаны и протестированы спроектированные алгоритмы: алгоритм полного перебора и муравьиный алгоритм.

@@ -1,0 +1,102 @@
+\chapter{Технологическая часть}
+
+В данном разделе приведены требования к программному обеспечению, средства реализации и листинги кода.
+
+\section{Требования к ПО}
+
+К программе предъявляется ряд требований:
+\begin{itemize}
+	\item на вход подаются две строки в английской или русской раскладе, в том числе содержащие цифры, специальные символы или пустые;
+	\item на выходе — искомое расстояние для всех четырех методов и матрицы расстояний для соотвествующих алгоритмов.
+\end{itemize}
+
+\section{Средства реализации}
+
+В качестве языка программирования для реализации данной лабораторной работы был выбран многопоточный язык GO \cite{golang}. Данный выбор обусловлен моим желанием расширить свои знания в области применения данного язкыа. Так же данный язык предоставляет средства тестирования разработанного ПО.
+
+\section{Листинг кода}
+
+В листингах \ref{lst:levenshtein_rec}--\ref{lst:damlev_mtr} приведены реализации алгоритмов Левенштейна и Дамерау — Левенштейна, а также вспомогательные функции.
+
+\clearpage
+
+\captionsetup{singlelinecheck = false, justification=raggedright}
+
+\begin{lstinputlisting}[
+	caption={Алгоритм Левенштейна},
+	label={lst:levenshtein_rec},
+	style={go},
+	linerange={3-31},
+	]{../src/levenshtein/levenshtein.go}
+\end{lstinputlisting}
+
+\clearpage
+
+
+\begin{lstinputlisting}[
+	caption={Алгоритм Левенштейна с кэшированием},
+	label={lst:levenshtein_cached},
+	style={go},
+	linerange={33-66},
+	]{../src/levenshtein/levenshtein.go}
+\end{lstinputlisting}
+
+\clearpage
+
+
+\begin{lstinputlisting}[
+	caption={Алгоритм Дамерау--Левенштейна},
+	label={lst:damlev},
+	style={go},
+	linerange={140-177},
+	]{../src/levenshtein/levenshtein.go}
+\end{lstinputlisting}
+
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Алгоритм Дамерау--Левенштейна c матрицей},
+	label={lst:damlev_mtr},
+	style={go},
+	linerange={92-138},
+	]{../src/levenshtein/levenshtein.go}
+\end{lstinputlisting}
+\clearpage
+
+
+
+В таблице \ref{tabular:functional_test} приведены функциональные тесты для алгоритмов вычисления расстояния Левенштейна и Дамерау — Левенштейна. Все тесты пройдены успешно (таблица \ref{tabular:functional_test_res}).
+
+
+\begin{table}[h]
+	\begin{center}
+		\caption{\label{tabular:functional_test} Функциональные тесты}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			                    &                    & \multicolumn{2}{c|}{\bfseries Ожидаемый результат}    \\ \cline{3-4}
+			\bfseries Строка 1  & \bfseries Строка 2 & \bfseries Левенштейн & \bfseries Дамерау — Левенштейн
+			\csvreader{inc/csv/functional-test.csv}{}
+			{\\\hline \csvcoli&\csvcolii&\csvcoliii&\csvcoliv}
+			\\\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[h]
+	\begin{center}
+		\caption{\label{tabular:functional_test_res} Результат работы программы}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			&                    & \multicolumn{2}{c|}{\bfseries Фактический результат}    \\ \cline{3-4}
+			\bfseries Строка 1  & \bfseries Строка 2 & \bfseries Левенштейн & \bfseries Дамерау — Левенштейн
+			\csvreader{inc/csv/functional-test.csv}{}
+			{\\\hline \csvcoli&\csvcolii&\csvcoliii&\csvcoliv}
+			\\\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+\captionsetup{singlelinecheck = false, justification=centering}
+
+\section{Вывод}
+
+Были разработаны и протестированы спроектированные алгоритмы: вычисления расстояния Левенштейна рекурсивно,рекурсивно с кэшированием, а также вычисления расстояния Дамерау — Левенштейна рекурсивно и с заполнением матрицы.

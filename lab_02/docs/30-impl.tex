@@ -1,0 +1,222 @@
+\chapter{Технологическая часть}
+
+В данном разделе приведены требования к программному обеспечению, средства реализации и листинги кода.
+
+\section{Требования к ПО}
+
+К программе предъявляется ряд требований:
+\begin{itemize}
+	\item взаимодействие программы и пользователя реализованно в виде меню;
+	\item пользователь может ввести матрицы для умножения ручным способом или сгенерировать, заполнив случайными числами;
+	\item элементами матрицы могут быть только целые числа;
+	\item считается, что пользователь вводит корректные данные;
+	\item на выходе -- результат умножения матриц, вычисленный стандартным способом, алгоритмом Винограда и его оптимизированной версии.
+\end{itemize}
+
+\section{Средства реализации}
+
+В качестве языка программирования для реализации данной лабораторной работы был выбран многопоточный язык GO \cite{golang}. Данный выбор обусловлен моим желанием расширить свои знания в области применения данного язкыа. Так же данный язык предоставляет средства тестирования разработанного ПО.
+
+\section{Листинг кода}
+
+В листингах \ref{lst:generator}--\ref{lst:winograd_o} приведены реализации вспомогательных утилит, а также алгоритма вычисления произведения двух матриц классическим способом, алгоритма Винограда без оптимизации и с оптимизацией.
+
+\clearpage
+
+\captionsetup{singlelinecheck = false, justification=raggedright}
+
+\begin{lstinputlisting}[
+	caption={Генератор матрицы},
+	label={lst:generator},
+	style={go},
+	linerange={8-23},
+	]{../src/matrix/matrix.go}
+\end{lstinputlisting}
+
+\begin{lstinputlisting}[
+	caption={Функция для выделения памяти},
+	label={lst:allocator},
+	style={go},
+	linerange={31-40},
+	]{../src/matrix/matrix_io.go}
+\end{lstinputlisting}
+
+\begin{lstinputlisting}[
+	caption={Классический алгоритм},
+	label={lst:classic},
+	style={go},
+	linerange={29-39},
+	]{../src/matrix/matrix.go}
+\end{lstinputlisting}
+
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Алгоритм Винограда без оптимизации},
+	label={lst:winograd},
+	style={go},
+	linerange={41-82},
+	]{../src/matrix/matrix.go}
+\end{lstinputlisting}
+
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Алгоритм Винограда c оптимизацией},
+	label={lst:winograd_o},
+	style={go},
+	linerange={84-129},
+	]{../src/matrix/matrix.go}
+\end{lstinputlisting}
+
+
+В таблице \ref{tabular:test_rec} приведены функциональные тесты для алгоритмов матриц. Все тесты пройдены успешно (таблица \ref{tabular:test_rec_res}).
+
+
+\begin{table}[h!]
+	\caption{\label{tabular:test_rec} Функциональные тесты}
+	\begin{center}
+		\begin{tabular}{c@{\hspace{7mm}}c@{\hspace{7mm}}c@{\hspace{7mm}}c@{\hspace{7mm}}c@{\hspace{7mm}}c@{\hspace{7mm}}}
+			\hline
+			Первая матрица & Вторая матрица & Ожидаемый результат \\ \hline
+			\vspace{4mm}
+			$\begin{pmatrix}
+				1 & 2 & 3\\
+				1 & 2 & 3\\
+				1 & 2 & 3
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				1 & 2 & 3\\
+				1 & 2 & 3\\
+				1 & 2 & 3
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				6 & 12 & 18\\
+				6 & 12 & 18\\
+				6 & 12 & 18
+			\end{pmatrix}$ \\
+			\vspace{2mm}
+			\vspace{2mm}
+			$\begin{pmatrix}
+				1 & 2 & 2\\
+				1 & 2 & 2
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				1 & 2\\
+				1 & 2\\
+				1 & 2
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				5 & 10\\
+				5 & 10
+			\end{pmatrix}$ \\
+			\vspace{2mm}
+			\vspace{2mm}
+			$\begin{pmatrix}
+				2
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				2
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				4
+			\end{pmatrix}$ \\
+			\vspace{2mm}
+			\vspace{2mm}
+			$\begin{pmatrix}
+				1 & -2 & 3\\
+				1 & 2 & 3\\
+				1 & 2 & 3
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				-1 & 2 & 3\\
+				1 & 2 & 3\\
+				1 & 2 & 3
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				0 & 4 & 6\\
+				4 & 12 & 18\\
+				4 & 12 & 18
+			\end{pmatrix}$\\
+			\vspace{2mm}
+			\vspace{2mm}
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{table}[h!]
+	\caption{\label{tabular:test_rec_res} Результат работы программы}
+	\begin{center}
+		\begin{tabular}{c@{\hspace{7mm}}c@{\hspace{7mm}}c@{\hspace{7mm}}c@{\hspace{7mm}}c@{\hspace{7mm}}c@{\hspace{7mm}}}
+			\hline
+			Первая матрица & Вторая матрица & Фактический результат \\ \hline
+			\vspace{4mm}
+			$\begin{pmatrix}
+				1 & 2 & 3\\
+				1 & 2 & 3\\
+				1 & 2 & 3
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				1 & 2 & 3\\
+				1 & 2 & 3\\
+				1 & 2 & 3
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				6 & 12 & 18\\
+				6 & 12 & 18\\
+				6 & 12 & 18
+			\end{pmatrix}$ \\
+			\vspace{2mm}
+			\vspace{2mm}
+			$\begin{pmatrix}
+				1 & 2 & 2\\
+				1 & 2 & 2
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				1 & 2\\
+				1 & 2\\
+				1 & 2
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				5 & 10\\
+				5 & 10
+			\end{pmatrix}$ \\
+			\vspace{2mm}
+			\vspace{2mm}
+			$\begin{pmatrix}
+				2
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				2
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				4
+			\end{pmatrix}$ \\
+			\vspace{2mm}
+			\vspace{2mm}
+			$\begin{pmatrix}
+				1 & -2 & 3\\
+				1 & 2 & 3\\
+				1 & 2 & 3
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				-1 & 2 & 3\\
+				1 & 2 & 3\\
+				1 & 2 & 3
+			\end{pmatrix}$ &
+			$\begin{pmatrix}
+				0 & 4 & 6\\
+				4 & 12 & 18\\
+				4 & 12 & 18
+			\end{pmatrix}$\\
+			\vspace{2mm}
+			\vspace{2mm}
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\captionsetup{singlelinecheck = false, justification=centering}
+
+\section{Вывод}
+
+Были разработаны и протестированы спроектированные алгоритмы: вычисления произведения двух матриц классическим способом, алгоритмом Винограда без оптимизации и с оптимизацией.

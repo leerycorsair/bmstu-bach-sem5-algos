@@ -1,0 +1,30 @@
+goos: linux
+goarch: amd64
+pkg: local/array
+BenchmarkBS500asc-12      	    3000	       881 ns/op	       1 B/op	       0 allocs/op
+BenchmarkBS1000asc-12     	    3000	      1590 ns/op	       2 B/op	       0 allocs/op
+BenchmarkBS2000asc-12     	    3000	      2909 ns/op	       5 B/op	       0 allocs/op
+BenchmarkBS3000asc-12     	    3000	      4236 ns/op	       8 B/op	       0 allocs/op
+BenchmarkBS5000asc-12     	    3000	      7155 ns/op	      13 B/op	       0 allocs/op
+BenchmarkBS500desc-12     	    3000	    223114 ns/op	       4 B/op	       0 allocs/op
+BenchmarkBS1000desc-12    	    3000	    900793 ns/op	       2 B/op	       0 allocs/op
+BenchmarkBS2000desc-12    	    3000	   3656605 ns/op	       5 B/op	       0 allocs/op
+BenchmarkBS3000desc-12    	    3000	   8245363 ns/op	      11 B/op	       0 allocs/op
+BenchmarkBS5000desc-12    	    3000	  22416200 ns/op	      23 B/op	       0 allocs/op
+BenchmarkIS500asc-12      	    3000	       796 ns/op	       1 B/op	       0 allocs/op
+BenchmarkIS1000asc-12     	    3000	      1308 ns/op	       5 B/op	       0 allocs/op
+BenchmarkIS2000asc-12     	    3000	      2442 ns/op	       5 B/op	       0 allocs/op
+BenchmarkIS3000asc-12     	    3000	      3652 ns/op	       8 B/op	       0 allocs/op
+BenchmarkIS5000asc-12     	    3000	      5794 ns/op	      13 B/op	       0 allocs/op
+BenchmarkSS500asc-12      	    3000	    103921 ns/op	       4 B/op	       0 allocs/op
+BenchmarkSS1000asc-12     	    3000	    405207 ns/op	       5 B/op	       0 allocs/op
+BenchmarkSS2000asc-12     	    3000	   1593827 ns/op	       5 B/op	       0 allocs/op
+BenchmarkSS3000asc-12     	    3000	   3522391 ns/op	       8 B/op	       0 allocs/op
+BenchmarkSS5000asc-12     	    3000	   9675609 ns/op	      13 B/op	       0 allocs/op
+BenchmarkSS500desc-12     	    3000	    109835 ns/op	       1 B/op	       0 allocs/op
+BenchmarkSS1000desc-12    	    3000	    435492 ns/op	       8 B/op	       0 allocs/op
+BenchmarkSS2000desc-12    	    3000	   1610109 ns/op	       5 B/op	       0 allocs/op
+BenchmarkSS3000desc-12    	    3000	   3456277 ns/op	       8 B/op	       0 allocs/op
+BenchmarkSS5000desc-12    	    3000	   9019436 ns/op	      13 B/op	       0 allocs/op
+PASS
+ok  	local/array	417.361s

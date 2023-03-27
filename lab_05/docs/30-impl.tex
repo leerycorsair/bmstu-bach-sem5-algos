@@ -1,0 +1,82 @@
+\chapter{Технологическая часть}
+
+В данном разделе приведены требования к программному обеспечению, средства реализации и листинги кода.
+
+\section{Требования к ПО}
+
+К программе предъявляется ряд требований:
+\begin{itemize}
+	\item на вход подается количество заявок на создание дневного рациона;
+	\item на выходе лог обработки заявок с временными метками;
+	\item существует система автоматического тестирования.
+\end{itemize}
+
+\section{Средства реализации}
+
+В качестве языка программирования для реализации данной лабораторной работы был выбран многопоточный язык GO \cite{golang}. Данный выбор обусловлен моим желанием расширить свои знания в области применения данного языка. Также данный язык предоставляет удобные средства для работы с потоками (goroutines) \cite{goconc}.
+ 
+Время работы алгоритмов было замерено с помощью функции {\ttfamily Now()}
+из библиотеки {\ttfamily Time}.
+
+\section{Листинг кода}
+
+В листингах \ref{lst:linear}--\ref{lst:gen} приведены  линейная и конвейерная реализации алгоритма, а также вспомогательные функции.
+
+\clearpage
+
+\captionsetup{singlelinecheck = false, justification=raggedright}
+
+\begin{lstinputlisting}[
+	caption={Линейный алгоритм},
+	label={lst:linear},
+	style={go},
+	linerange={5-42},
+	]{../src/conveyor/linear.go}
+\end{lstinputlisting}
+
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Конвейерный алгоритм},
+	label={lst:parallel},
+	style={go},
+	linerange={8-54},
+	]{../src/conveyor/parallel.go}
+\end{lstinputlisting}
+
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Алгоритмы логирования},
+	label={lst:log},
+	style={go},
+	linerange={8-46},
+	]{../src/conveyor/log.go}
+\end{lstinputlisting}
+
+\clearpage
+
+\begin{lstinputlisting}[
+	caption={Используемые структуры данных},
+	label={lst:structs},
+	style={go},
+	linerange={5-31},
+	]{../src/conveyor/types.go}
+\end{lstinputlisting}
+
+\begin{lstinputlisting}[
+	caption={Алгоритмы обработки очереди},
+	label={lst:queue},
+	style={go},
+	linerange={5-17},
+	]{../src/conveyor/queue.go}
+\end{lstinputlisting}
+\clearpage
+
+
+
+\captionsetup{singlelinecheck = false, justification=centering}
+
+\section{Вывод}
+
+Были разработаны линейный и конвейерный спроектированные алгоритмы генерации дневного рациона клиента службы доставки.

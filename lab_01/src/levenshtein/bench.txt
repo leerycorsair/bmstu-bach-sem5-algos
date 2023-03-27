@@ -1,0 +1,9 @@
+goos: linux
+goarch: amd64
+pkg: local/levenshtein
+BenchmarkLevRec5-12            	   47652	     22735 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLevRec8-12            	     310	   3517713 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLevRec10-12           	       8	 125171940 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLevRec12-12           	       1	3425549927 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLevRecCached5-12      	 1704662	      1053 ns/op	     368 B/op	       6 allocs/op
+BenchmarkLevRecCached8-12      	
